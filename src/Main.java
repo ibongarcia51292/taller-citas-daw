@@ -113,10 +113,26 @@ public static void calcularCosteServicio() {
     // 4. Cálculo final del coste
 }
 public static String formatearFechaEspanol() {
-
-    return "";
+    if (fechaCita == null) {
+        return "Fecha no disponible";
+    }
+    return fechaCita.format(FORMATO_ESPANOL);
 }
 public static void leerYValidarFecha() {
     // De las fechas se encarga el alumno C
+    scanner.nextLine();
+    System.out.print("Fecha y hora de la cita (" + PATRON_FECHA + "): ");
+    String entrada = scanner.nextLine();
+
+    try {
+        // Intenta parsear la cadena ingresada según el patrón definido
+        fechaCita = LocalDateTime.parse(entrada, FORMATO_ESPANOL);
+        System.out.println(" Fecha correcta.");
+
+    } catch (DateTimeParseException e) {
+        System.out.println("Formato incorrecto. Debe usar exactamente el formato: dd/MM/yyyy HH:mm");
+        System.out.println("Se asignará la fecha y hora actual por defecto.");
+        fechaCita = LocalDateTime.now();
+    }
 
 }
