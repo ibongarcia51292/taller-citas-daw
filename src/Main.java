@@ -102,15 +102,33 @@ public static void calcularCosteServicio() {
 
     String matriculaLimpia = matricula.trim().toUpperCase();
 
-
     double porcentajeDescuento = 0.0;
 
     // Regla A: Vehículos híbridos/eléctricos o flotas especiales (ejemplo: terminan en "ECO")
+    if (matriculaLimpia.endsWith("ECO")) {
+        porcentajeDescuento = 0.20; // 20% de descuento
+        System.out.println("Aplicado 20% de descuento por matrícula ECO.");
 
         // Regla B: Vehículos antiguos o promocionales (ejemplo: contienen el número "00")
+    } else
+    if (matriculaLimpia.contains("00")) {
+        porcentajeDescuento = 0.10; // 10% de descuento
+        System.out.println("Aplicado 10% de descuento por promoción especial (serie 00).");
 
+        // Regla C: Formato histórico o especial (ejemplo: empieza por la letra 'H')
+    } else
+    if (matriculaLimpia.startsWith("H")) {
+        porcentajeDescuento = 0.15; // 15% de descuento
+        System.out.println("Aplicado 15% de descuento para vehículo histórico.");
+    } else {
+        System.out.println("No se aplican descuentos a esta matrícula.");
+    }
 
     // 4. Cálculo final del coste
+    double descuento = precioBase * porcentajeDescuento;
+    double precioFinal = precioBase - descuento;
+
+    System.out.printf("El importe total a pagar es: %.2f €\n", precioFinal);
 }
 public static String formatearFechaEspanol() {
 
