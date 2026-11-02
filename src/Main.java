@@ -70,6 +70,45 @@ public static void registrarCita() {
     Alumno A: Rama feature/registro-cita
      (Pide datos del vehículo, convierte la matrícula a mayúsculas, y valida la fecha introducida usando LocalDate).
      */
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("\n--- REGISTRO DE NUEVA CITA ---");
+
+    // 1. Pedir datos del cliente y vehículo
+    // Falta el try, las expresiones regulares, repetitivas hasta que el dato sea correcto.
+    System.out.print("Nombre del cliente: ");
+    cliente = scanner.nextLine();
+
+    System.out.print("Matrícula del vehículo (ej. 1234ABC, 0012KFX, ECO): ");
+    matricula = scanner.nextLine().trim().toUpperCase(); // Convierte la matrícula a mayúsculas
+
+    System.out.print("La marca del vehículo: ");
+    marca = scanner.nextLine();
+
+    System.out.print("Modelo del vehículo: ");
+    modelo = scanner.nextLine();
+
+    // 2. Pedir y validar la fecha y hora de la cita (haciendo uso de GestorFechas o validación local)
+    System.out.println("Asignación de fecha y hora --");
+    leerYValidarFecha();
+
+    System.out.println("Tipo de servicio para el que solicita la cita.");
+    System.out.println("1.- Cambio de aceite y filtro");
+    System.out.println("2.- Revisión general");
+    System.out.println("3.- Cambio de frenos");
+    System.out.println("4.- Distribución");
+    tipoServicio = scanner.nextInt();
+
+    // 3. Resumen del registro de la cita
+    System.out.println("\n========================================");
+    System.out.println("   ¡CITA REGISTRADA CORRECTAMENTE!");
+    System.out.println("========================================");
+    System.out.println("Cliente:   " + cliente);
+    System.out.println("Matrícula: " + matricula);
+    System.out.println("Modelo:  " + modelo);
+    System.out.println("Marca:  " + marca);
+    System.out.println("Fecha:     " + formatearFechaEspanol());
+    System.out.println("Tipo de servicio:     " + tipoServicio);
+    System.out.println("========================================\n");
 
     // Se pueden crear funciones varias, en vez de todo el código en registrar cita.
 }
